@@ -47,4 +47,24 @@ public class HelloController {
 
     }
 
+    //  /hello/greetingform
+    @GetMapping("greetingform")
+    public String greetingForm() {
+        return "<html>" +
+                    "<body>" +
+                        "<form action='hello' method='get'>" +
+                            "<input type='text' name='name'>" +
+                            "<select name='language'>" +
+                                "<option value='english'>English</option>" +
+                                "<option value='french'>French</option>" +
+                                "<option value='german'>German</option>" +
+                                "<option value='spanish'>Spanish</option>" +
+                                "<option value='italian'>Italian</option>" +
+                            "</select>" +
+                            "<input type='submit' value='Greet me!>" +
+                        "</form>" +
+                    "</body>" +
+                "</html>";
+    }
+
 }
