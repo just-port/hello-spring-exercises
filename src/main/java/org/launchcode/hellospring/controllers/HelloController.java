@@ -52,7 +52,7 @@ public class HelloController {
     public String greetingForm() {
         return "<html>" +
                     "<body>" +
-                        "<form action='hello' method='get'>" +
+                        "<form action='/hello' method='post'>" +
                             "<input type='text' name='name'>" +
                             "<select name='language'>" +
                                 "<option value='english'>English</option>" +
@@ -61,10 +61,37 @@ public class HelloController {
                                 "<option value='spanish'>Spanish</option>" +
                                 "<option value='italian'>Italian</option>" +
                             "</select>" +
-                            "<input type='submit' value='Greet me!>" +
+                            "<input type='submit' value='Greet me!'>" +
                         "</form>" +
                     "</body>" +
                 "</html>";
+    }
+
+    @RequestMapping(value="hello", method = RequestMethod.POST)
+    public String helloPost(@RequestParam String name, @RequestParam String language) {
+        if (name == null) {
+            name = "World";
+        }
+
+        return createMessage(name, language);
+    }
+
+    public static String createMessage(String aName, String lang) {
+        String greeting = "";
+
+        if (lang.equals("english")) {
+            greeting = "Hello";
+        } else if (lang.equals("french")) {
+            greeting = "Bonjour";
+        } else if (lang.equals("german")) {
+            greeting = "Hallo";
+        } else if (lang.equals("spanish")) {
+            greeting = "Hola";
+        } else if (lang.equals("italian")) {
+            greeting = "Bonjourno";
+        }
+
+        return greeting + ", " + aName +"!";
     }
 
 }
